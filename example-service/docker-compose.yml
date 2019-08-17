@@ -66,12 +66,13 @@ services:
     env_file:
       - ./config.env
     volumes:
-      - db:/var/lib/mysql
+      - db-storage:/var/lib/mysql
     networks:
       - default
 
 volumes:
-  db:
+  db-storage:
+    driver: local
 
 networks:
   gateway:
