@@ -1,7 +1,7 @@
 0,15,30,45 * * * * php /app/app/console mautic:segments:update --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&1
 5,20,35,50 * * * * php /app/app/console mautic:campaigns:update --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&1
-10,24,40,55 * * * * php /app/app/console mautic:campaigns:trigger --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&
-*/5 * * * * php /app/app/console mautic:emails:send --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&
-*/5 * * * * php /app/app/console mautic:webhooks:process --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&
-0 * * * * php /app/app/console mautic:broadcasts:send --channel=email --env=prod --no-interaction --batch=100 --no-ansi >> /proc/self/fd/2 2>&
-0 0 */7 * * php /app/app/console mautic:iplookup:download --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&
+10,24,40,55 * * * * php /app/app/console mautic:campaigns:trigger --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&1
+*/5 * * * * php /app/app/console mautic:emails:send --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&1
+*/5 * * * * php /app/app/console mautic:webhooks:process --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&1
+0 * * * * php /app/app/console mautic:broadcasts:send --channel=email --env=prod --no-interaction --batch=100 --no-ansi >> /proc/self/fd/2 2>&1
+0 0 */7 * * php /app/app/console mautic:iplookup:download --env=prod --no-interaction --no-ansi >> /proc/self/fd/2 2>&1
