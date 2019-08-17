@@ -3,10 +3,6 @@
 set -e
 
 # -----------------------------------------------------------------------------
-# User for containers
-export CURRENT_UID="$(id -u):$(id -g)"
-
-# -----------------------------------------------------------------------------
 # Applications base dir
 #
 # <root path>
@@ -22,12 +18,20 @@ export CURRENT_UID="$(id -u):$(id -g)"
 base_dir="$(dirname "$0")"
 export APPS_DIR="$base_dir/../apps/"
 
+if [[ -f "$base_dir/config.env" ]]; then
+	source "$base_dir/config.env"
+fi
+
+# -----------------------------------------------------------------------------
+# User for containers
+export CURRENT_UID="$(id -u):$(id -g)"
+
 ###############################################################################
 
 if [[ -z $(docker ps -q --filter "name=^/gateway$") ]]; then
 	printf "\e[37mRunning proxy \e[90m... "
 	cd "$base_dir/gateway"
-	#docker-compose -p "$PROXY_NAME" up -d
+	docker-compose -p "$PROXY_NAME" up -d
 	sleep 10
 	printf "\e[32;1mdone\n"
 fi

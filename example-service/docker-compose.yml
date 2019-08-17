@@ -17,7 +17,7 @@ services:
       - ${APPS_DIR}/mautic:/app
     labels:
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:example.com"
+      - "traefik.frontend.rule=Host:${PROJECT_DOMAIN}"
       - "traefik.frontend.entryPoints=https"
       - "traefik.protocol=http"
       - "traefik.port=80"
