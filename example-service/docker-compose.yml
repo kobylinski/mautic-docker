@@ -20,7 +20,7 @@ services:
       - "traefik.frontend.rule=Host:${PROJECT_DOMAIN}"
       - "traefik.frontend.entryPoints=https"
       - "traefik.protocol=http"
-      - "traefik.port=80"
+      - "traefik.port=8080"
       - "traefik.docker.network=proxy_gateway"
     networks:
       - default
@@ -62,7 +62,6 @@ services:
   db:
     image: mariadb
     restart: always
-    user: ${CURRENT_UID}
     env_file:
       - ./config.env
     volumes:
@@ -72,7 +71,6 @@ services:
 
 volumes:
   db-storage:
-    driver: local
 
 networks:
   gateway:
