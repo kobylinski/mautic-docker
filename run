@@ -1,0 +1,77 @@
+#!/bin/bash
+
+set -e
+
+# -----------------------------------------------------------------------------
+# Email for let's encrypt service
+export ACME_EMAIL="..."
+
+# -----------------------------------------------------------------------------
+# Network prefix
+export PROXY_NAME="proxy"
+
+# -----------------------------------------------------------------------------
+# User for containers
+export CURRENT_UID="$(id -u):$(id -g)"
+
+base_dir="$(dirname "$0")"
+
+###############################################################################
+
+if [[ -z $(docker ps -q --filter "name=^/gateway$") ]]; then
+	printf "\e[37mRunning proxy \e[90m... "
+	cd "$base_dir/gateway"
+	#docker-compose -p "$PROXY_NAME" up -d
+	sleep 10
+	printf "\e[32;1mdone\n"
+fi
+
+if [[ -z "$1" ]]; then
+	exit 1;
+fi
+
+current_app=${1%/}
+project="$base_dir/$current_app"
+if [[ ! -f "$project/docker-compose.yml" ]]; then
+	printf "\e[0mInvalid project name: \e[31;1m%s\n" "$CURRENT_APP"
+	exit 1;
+fi
+
+cd "$project"
+case "$1" in
+	env:up)
+		docker-compose up -d
+		;;
+
+	env:down)
+		docker-compose down
+		;;
+
+	env:build)
+		docker-compose build
+		;;
+
+	run:sh)
+		docker-compose exec "$2" /bin/bash
+		;;
+
+	run:db)
+		docker-compose exec db mysql -uroot
+		;;
+
+	install:composer)
+		docker-compose exec --privileged cli composer install
+		;;
+
+	install:npm)
+		docker-compose exec --privileged cli npm install
+		;;
+
+	app:cache)
+		docker-compose exec --privileged cli php /app/app/console cache:clear
+		;;
+
+	app:build)
+		docker-compose exec --privileged cli grunt build
+		;;
+esac	
