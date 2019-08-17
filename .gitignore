@@ -1,1 +1,9 @@
-config.env
+/*
+/*/
+
+!/example-service/
+!/gateway/
+!/config.example.env
+!/LICENCE
+!/run
+!/.gitignore
