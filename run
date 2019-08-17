@@ -48,7 +48,7 @@ if [[ ! -f "$project/docker-compose.yml" ]]; then
 fi
 
 cd "$project"
-case "$1" in
+case "$2" in
 	env:up)
 		docker-compose up -d
 		;;
@@ -62,7 +62,7 @@ case "$1" in
 		;;
 
 	run:sh)
-		docker-compose exec "$2" /bin/bash
+		docker-compose exec "$3" /bin/bash
 		;;
 
 	run:db)
