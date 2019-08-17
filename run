@@ -3,18 +3,24 @@
 set -e
 
 # -----------------------------------------------------------------------------
-# Email for let's encrypt service
-export ACME_EMAIL="..."
-
-# -----------------------------------------------------------------------------
-# Network prefix
-export PROXY_NAME="proxy"
-
-# -----------------------------------------------------------------------------
 # User for containers
 export CURRENT_UID="$(id -u):$(id -g)"
 
+# -----------------------------------------------------------------------------
+# Applications base dir
+#
+# <root path>
+# * services
+#   * gateway
+#   * mautic1
+#   * mautic2
+#   * run
+# * apps
+#   * mautic1
+#   * mautic2
+#
 base_dir="$(dirname "$0")"
+export APPS_DIR="$base_dir/../apps/"
 
 ###############################################################################
 
@@ -64,7 +70,7 @@ case "$1" in
 		;;
 
 	install:npm)
-		docker-compose exec --privileged cli npm install
+		docker-compose exec --privileged cli npm  install
 		;;
 
 	app:cache)
