@@ -15,7 +15,7 @@ set -e
 #   * mautic1
 #   * mautic2
 #
-base_dir="$(dirname "$0")"
+base_dir="$(realpath $(dirname "$0"))"
 export APPS_DIR="$base_dir/../apps/"
 
 if [[ -f "$base_dir/config.env" ]]; then
