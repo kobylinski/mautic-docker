@@ -2,6 +2,7 @@ FROM php:7.1-cli
 
 RUN apt-get update \
 	&& apt-get -y --no-install-recommends dist-upgrade 														\
+	&& curl -sL https://deb.nodesource.com/setup_12.x | bash - 												\
 	&& apt-get install -y --no-install-recommends 															\
 		git 																								\
 		wget 																								\
@@ -17,8 +18,7 @@ RUN apt-get update \
 		unzip 																								\
 		zip 																								\
 		coreutils 																							\
-	&& curl -sL https://deb.nodesource.com/setup_12.x | bash -												\
-	&& apt-get install -y nodejs 																			\
+		nodejs																								\
 	&& apt-get -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false purge 						\
 	&& rm -rf /var/lib/apt/lists/*
 
