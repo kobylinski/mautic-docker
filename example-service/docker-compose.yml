@@ -32,7 +32,7 @@ services:
     user: ${CURRENT_UID}
     working_dir: /app
     volumes:
-      - ./crontab:/crontab/crontab
+      - ./cli/crontab:/crontab/crontab
       - ./services/cli/php.ini:/usr/local/etc/php/php.ini
       - ./var/composer:/.composer
       - ${APPS_DIR}/mautic:/app
