@@ -33,7 +33,7 @@ services:
     working_dir: /app
     volumes:
       - ./cli/crontab:/crontab/crontab
-      - ./services/cli/php.ini:/usr/local/etc/php
+      - ./services/cli/php.ini:/usr/local/etc/php/php.ini
       - ~/.composer:/.composer
       - ${APPS_DIR}/mautic:/app
     links:
