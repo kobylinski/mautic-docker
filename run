@@ -40,6 +40,10 @@ if [[ -z "$1" ]]; then
 	exit 1;
 fi
 
+if [[ ! -d "~/.composer" ]]; then
+	mkdir "~/.composer"
+fi
+
 current_app=${1%/}
 project="$base_dir/$current_app"
 if [[ ! -f "$project/docker-compose.yml" ]]; then
