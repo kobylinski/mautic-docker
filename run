@@ -40,8 +40,8 @@ if [[ -z "$1" ]]; then
 	exit 1;
 fi
 
-if [[ ! -d "~/.composer" ]]; then
-	mkdir "~/.composer"
+if [[ ! -d ~/.composer ]]; then
+	mkdir ~/.composer
 fi
 
 current_app=${1%/}
